@@ -5,8 +5,7 @@ volumes:
     grafana_data: {}
 
 networks:
-  telegram:
-  monitor-net:
+  telegram-net:
 
 services:
 
@@ -16,14 +15,17 @@ services:
     stdin_open: true
     tty: true
     networks:
-      - telegram
+      - telegram-net
     restart: always
 
   telegrambot:
     container_name: telegramBot
-    image: ivaneyukin/telegram:1.0.2
+    # image: ivaneyukin/telegram:1.0.2
+    image: telegram-bot-tets:latest
     networks:
-      - telegram
+      - telegram-net
+    ports:
+      - 9900:9900
     restart: always
 
   prometheus:
@@ -44,7 +46,7 @@ services:
     depends_on:
       - cadvisor
     networks:
-      - monitor-net
+      - telegram-net
     deploy:
       placement:
         constraints:
@@ -67,11 +69,22 @@ services:
     ports:
       - 8091:9100
     networks:
-      - monitor-net
+      - telegram-net
     deploy:
       mode: global
       restart_policy:
           condition: on-failure
+
+  redis-exporter:
+    container_name: redis-exporter
+    image: oliver006/redis_exporter:alpine
+
+    command: ["--redis.addr", "redis://redis:6379"]
+    ports:
+      - "9121:9121"
+    networks:
+      - telegram-net
+    restart: unless-stopped
 
   alertmanager:
     container_name: alertmanager
@@ -81,7 +94,7 @@ services:
     volumes:
       - "./alertmanager/:/etc/alertmanager/"
     networks:
-      - monitor-net
+      - telegram-net
     command:
       - '--config.file=/etc/alertmanager/config.yml'
       - '--storage.path=/alertmanager'
@@ -103,7 +116,7 @@ services:
     ports:
       - 8093:8080
     networks:
-      - monitor-net
+      - telegram-net
     deploy:
       mode: global
       restart_policy:
@@ -122,7 +135,7 @@ services:
     env_file:
       - ./grafana/config.monitoring
     networks:
-      - monitor-net
+      - telegram-net
     user: "472"
     deploy:
       placement:
