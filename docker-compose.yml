@@ -10,7 +10,7 @@ networks:
 services:
 
   redis:
-    container_name: RedisProd
+    container_name: redis
     image: redis:latest
     stdin_open: true
     tty: true
@@ -20,8 +20,7 @@ services:
 
   telegrambot:
     container_name: telegramBot
-    # image: ivaneyukin/telegram:1.0.2
-    image: telegram-bot-tets:latest
+    image: ivaneyukin/telegram:1.0.3
     networks:
       - telegram-net
     ports:
@@ -75,16 +74,16 @@ services:
       restart_policy:
           condition: on-failure
 
-  redis-exporter:
-    container_name: redis-exporter
-    image: oliver006/redis_exporter:alpine
+  # redis-exporter:
+  #   container_name: redis-exporter
+  #   image: oliver006/redis_exporter:alpine
 
-    command: ["--redis.addr", "redis://redis:6379"]
-    ports:
-      - "9121:9121"
-    networks:
-      - telegram-net
-    restart: unless-stopped
+  #   command: ["--redis.addr", "redis://redis:6379"]
+  #   ports:
+  #     - "9121:9121"
+  #   networks:
+  #     - telegram-net
+  #   restart: unless-stopped
 
   alertmanager:
     container_name: alertmanager
