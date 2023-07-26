@@ -86,7 +86,7 @@ groups:
       severity: page
     annotations:
       summary: DiskIOsPerDevice
-	
+
   - alert: DiskIOsPerDeviceWrite
     expr: irate(node_disk_writes_completed{job="<host>"}[5m]) > 10
     for: 5m
@@ -126,7 +126,7 @@ groups:
       severity: page
     annotations:
       summary: NetworkTrafficTransmit
-	
+
   - alert: Netstat
     expr: node_netstat_Tcp_CurrEstab{job="<host>"} > 20
     for: 5m
@@ -134,7 +134,7 @@ groups:
       severity: page
     annotations:
       summary: Netstat
-	
+
   - alert: UDPStatsInDatagrams
     expr: irate(node_netstat_Udp_InDatagrams{job="<host>"}[5m]) > 50
     for: 5m
