@@ -168,7 +168,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "sum(container_memory_usage_bytes{image=\"prom/prometheus:v2.36.2\"})",
+          "expr": "sum(container_memory_usage_bytes{name=\"prometheus\"})",
           "format": "time_series",
           "interval": "10s",
           "intervalFactor": 1,
@@ -399,7 +399,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "sum by (name) (rate(container_cpu_user_seconds_total{image=\"prom/prometheus:v2.36.2\"}[1m]) * 100  / scalar(count(node_cpu_seconds_total{mode=\"user\"})))",
+          "expr": "sum by (name) (rate(container_cpu_user_seconds_total{name=\"prometheus\"}[1m]) * 100  / scalar(count(node_cpu_seconds_total{mode=\"user\"})))",
           "format": "time_series",
           "intervalFactor": 10,
           "legendFormat": "{{ name }}",
@@ -495,7 +495,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "sum by (name) (container_memory_usage_bytes{image=\"prom/prometheus:v2.36.2\"})",
+          "expr": "sum by (name) (container_memory_usage_bytes{name=\"prometheus\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 10,
@@ -3561,6 +3561,6 @@
   "timezone": "browser",
   "title": "Monitor Services",
   "uid": "bba2ddd6-5bad-451f-8c37-ec0951fd6f7a",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }

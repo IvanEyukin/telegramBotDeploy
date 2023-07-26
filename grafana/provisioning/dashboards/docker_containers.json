@@ -261,10 +261,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "(sum(node_memory_MemTotal_bytes) - sum(node_memory_MemFree_bytes+node_memory_Buffers_bytes+node_memory_Cached_bytes) ) / sum(node_memory_MemTotal_bytes) * 100",
+          "editorMode": "code",
+          "expr": "(sum(node_memory_MemTotal_bytes) - sum(node_memory_MemFree_bytes + node_memory_Buffers_bytes+node_memory_Cached_bytes) ) / sum(node_memory_MemTotal_bytes) * 100",
           "interval": "10s",
           "intervalFactor": 2,
           "legendFormat": "",
+          "range": true,
           "refId": "A",
           "step": 20
         }
@@ -513,7 +515,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "node_filesystem_size_bytes - node_filesystem_avail_bytes",
+          "expr": "node_filesystem_size_bytes - node_filesystem_free_bytes",
           "interval": "30s",
           "intervalFactor": 2,
           "range": true,
@@ -855,6 +857,79 @@
       }
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 8
+      },
+      "id": 16,
+      "links": [],
+      "options": {
+        "displayMode": "lcd",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "container_fs_usage_bytes{image!=\"\"}",
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "{{ name }}",
+          "range": true,
+          "refId": "A",
+          "step": 2
+        }
+      ],
+      "title": "Container Disk usage",
+      "type": "bargauge"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -873,7 +948,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 8
+        "y": 15
       },
       "hiddenSeries": false,
       "id": 8,
@@ -969,7 +1044,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 15
+        "y": 22
       },
       "hiddenSeries": false,
       "id": 11,
@@ -1065,7 +1140,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 22
+        "y": 29
       },
       "hiddenSeries": false,
       "id": 12,
@@ -1161,7 +1236,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 29
+        "y": 36
       },
       "hiddenSeries": false,
       "id": 13,
@@ -1257,7 +1332,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 29
+        "y": 36
       },
       "hiddenSeries": false,
       "id": 14,
@@ -1376,6 +1451,6 @@
   "timezone": "browser",
   "title": "Docker Containers",
   "uid": "c9cb10a4-2bd5-4896-a665-cf8ad79b8bc6",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }

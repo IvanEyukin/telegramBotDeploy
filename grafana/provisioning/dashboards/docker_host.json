@@ -92,9 +92,11 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "editorMode": "code",
           "expr": "node_time_seconds - node_boot_time_seconds",
           "interval": "30s",
           "intervalFactor": 1,
+          "range": true,
           "refId": "A",
           "step": 30
         }
@@ -1536,7 +1538,7 @@
       }
     }
   ],
-  "refresh": false,
+  "refresh": "",
   "schemaVersion": 38,
   "style": "dark",
   "tags": [
@@ -1546,8 +1548,8 @@
     "list": []
   },
   "time": {
-    "from": "2023-07-05T05:53:06.645Z",
-    "to": "2023-07-05T07:53:06.645Z"
+    "from": "now-15m",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -1577,6 +1579,6 @@
   "timezone": "browser",
   "title": "Docker Host",
   "uid": "c7008115-ae22-4a1a-89a3-b274398b50a5",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }

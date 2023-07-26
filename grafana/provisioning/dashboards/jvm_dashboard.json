@@ -1286,7 +1286,7 @@
       }
     }
   ],
-  "refresh": false,
+  "refresh": "",
   "schemaVersion": 38,
   "style": "dark",
   "tags": [
@@ -1296,7 +1296,7 @@
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "Prometheus",
           "value": "Prometheus"
         },
@@ -1306,6 +1306,7 @@
         "name": "datasource",
         "options": [],
         "query": "prometheus",
+        "queryValue": "",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -1419,8 +1420,8 @@
     ]
   },
   "time": {
-    "from": "2023-07-05T07:11:58.970Z",
-    "to": "2023-07-05T07:41:58.970Z"
+    "from": "now-15m",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -1445,6 +1446,6 @@
   "timezone": "",
   "title": "JVM dashboard",
   "uid": "chanjarster-jvm-dashboard",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }

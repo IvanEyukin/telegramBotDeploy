@@ -3,6 +3,7 @@ version: "3.7"
 volumes:
     prometheus_data: {}
     grafana_data: {}
+    sqlite: {}
 
 networks:
   telegram-net:
@@ -20,7 +21,9 @@ services:
 
   telegrambot:
     container_name: telegramBot
-    image: ivaneyukin/telegram:1.0.3.1
+    image: ivaneyukin/telegram:1.0.4
+    volumes:
+      - sqlite:/project/telegrambot/db
     networks:
       - telegram-net
     ports:
@@ -29,13 +32,14 @@ services:
 
   prometheus:
     container_name: prometheus
-    image: prom/prometheus:v2.36.2
+    image: prom/prometheus:v2.45.0
     volumes:
       - ./prometheus/:/etc/prometheus/
       - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention.size=1GB'
       - '--web.console.libraries=/usr/share/prometheus/console_libraries'
       - '--web.console.templates=/usr/share/prometheus/consoles'
       - '--web.enable-lifecycle'
