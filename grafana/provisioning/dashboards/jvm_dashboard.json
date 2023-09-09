@@ -788,6 +788,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
+        "type": "prometheus",
         "uid": "$datasource"
       },
       "decimals": 0,
@@ -832,12 +833,14 @@
           "datasource": {
             "uid": "$datasource"
           },
-          "expr": "increase(jvm_gc_collection_seconds_count{job=\"$job\",instance=~\"$instance\"}[$__interval])",
+          "editorMode": "code",
+          "expr": "increase(jvm_gc_collection_seconds_count{job=\"$job\",instance=~\"$instance\"}[$__range])",
           "format": "time_series",
           "interval": "60s",
           "intervalFactor": 1,
           "legendFormat": "{{gc}}",
           "metric": "",
+          "range": true,
           "refId": "A",
           "step": 10
         }
@@ -879,6 +882,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
+        "type": "prometheus",
         "uid": "$datasource"
       },
       "decimals": 0,
@@ -924,12 +928,14 @@
           "datasource": {
             "uid": "$datasource"
           },
-          "expr": "increase(jvm_gc_collection_seconds_sum{job=\"$job\",instance=~\"$instance\"}[$__interval])",
+          "editorMode": "code",
+          "expr": "increase(jvm_gc_collection_seconds_sum{job=\"$job\",instance=~\"$instance\"}[$__range])",
           "format": "time_series",
           "interval": "60s",
           "intervalFactor": 1,
           "legendFormat": "{{gc}}",
           "metric": "jvm_gc_collection_seconds_sum",
+          "range": true,
           "refId": "A",
           "step": 10
         }
@@ -1296,7 +1302,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "Prometheus",
           "value": "Prometheus"
         },
@@ -1446,6 +1452,6 @@
   "timezone": "",
   "title": "JVM dashboard",
   "uid": "chanjarster-jvm-dashboard",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }

@@ -601,7 +601,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "rate(redis_commands_processed_total[1m])",
+          "expr": "rate(redis_commands_processed_total[$__range])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
@@ -1000,7 +1000,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1102,7 +1103,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1142,7 +1144,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "rate(redis_net_input_bytes_total[1m])",
+          "expr": "rate(redis_net_input_bytes_total[$__range])",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "input",
@@ -1215,7 +1217,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1301,7 +1304,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "sum(rate(redis_expired_keys_total[1m]))",
+          "expr": "sum(rate(redis_expired_keys_total[$__range]))",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -1376,7 +1379,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1472,7 +1476,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1512,7 +1517,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "topk(5, irate(redis_commands_total[1m]))",
+          "expr": "topk(5, irate(redis_commands_total[$__range]))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
@@ -1569,6 +1574,6 @@
   "timezone": "browser",
   "title": "Redis",
   "uid": "xDLNRKUWz",
-  "version": 5,
+  "version": 6,
   "weekStart": ""
 }

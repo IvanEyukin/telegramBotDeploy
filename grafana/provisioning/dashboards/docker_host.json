@@ -185,10 +185,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "sum(rate(node_cpu_seconds_total{mode=\"idle\"}[1m])) * 100 / scalar(count(node_cpu_seconds_total{mode=\"user\"}))",
+          "editorMode": "code",
+          "expr": "sum(rate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100 / scalar(count(node_cpu_seconds_total{mode=\"user\"}))",
           "interval": "10s",
           "intervalFactor": 2,
           "legendFormat": "",
+          "range": true,
           "refId": "A",
           "step": 20
         }
@@ -883,10 +885,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "sum(rate(node_cpu_seconds_total[1m])) by (mode) * 100 / scalar(count(node_cpu_seconds_total{mode=\"user\"}))",
+          "editorMode": "code",
+          "expr": "sum(rate(node_cpu_seconds_total[$__range])) by (mode) * 100 / scalar(count(node_cpu_seconds_total{mode=\"user\"}))",
           "intervalFactor": 10,
           "legendFormat": "{{ mode }}",
           "metric": "node_cpu_seconds_total",
+          "range": true,
           "refId": "A",
           "step": 10
         }
@@ -1140,11 +1144,13 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "sum(irate(node_disk_read_bytes_total[1m]))",
+          "editorMode": "code",
+          "expr": "sum(irate(node_disk_read_bytes_total[$__range]))",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "read",
           "metric": "node_disk_read_bytes_total",
+          "range": true,
           "refId": "A",
           "step": 1
         },
@@ -1261,10 +1267,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "irate(node_network_receive_bytes_total{device!=\"lo\"}[1m])",
+          "editorMode": "code",
+          "expr": "irate(node_network_receive_bytes_total{device!=\"lo\"}[$__range])",
           "intervalFactor": 1,
           "legendFormat": "In: {{ device }}",
           "metric": "node_network_receive_bytes_total",
+          "range": true,
           "refId": "A",
           "step": 1
         },
@@ -1548,7 +1556,7 @@
     "list": []
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {
@@ -1579,6 +1587,6 @@
   "timezone": "browser",
   "title": "Docker Host",
   "uid": "c7008115-ae22-4a1a-89a3-b274398b50a5",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }

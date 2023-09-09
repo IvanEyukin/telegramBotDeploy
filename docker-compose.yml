@@ -21,7 +21,7 @@ services:
 
   telegrambot:
     container_name: telegramBot
-    image: ivaneyukin/telegram:1.0.4
+    image: ivaneyukin/telegram:1.0.5
     volumes:
       - sqlite:/project/telegrambot/db
     networks:
