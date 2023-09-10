@@ -108,6 +108,7 @@
       ],
       "timeFrom": "10s",
       "title": "CPU Load",
+      "transparent": true,
       "type": "gauge"
     },
     {
@@ -188,6 +189,7 @@
         }
       ],
       "title": "CPU Cores",
+      "transparent": true,
       "type": "stat"
     },
     {
@@ -275,6 +277,7 @@
       ],
       "timeFrom": "10s",
       "title": "Memory Load",
+      "transparent": true,
       "type": "gauge"
     },
     {
@@ -357,6 +360,7 @@
       ],
       "timeFrom": "10s",
       "title": "Used Memory",
+      "transparent": true,
       "type": "stat"
     },
     {
@@ -444,6 +448,7 @@
       ],
       "timeFrom": "10s",
       "title": "Storage Load",
+      "transparent": true,
       "type": "gauge"
     },
     {
@@ -527,56 +532,378 @@
       ],
       "timeFrom": "10s",
       "title": "Used Storage",
+      "transparent": true,
       "type": "stat"
     },
     {
-      "aliasColors": {},
-      "bars": true,
-      "dashLength": 10,
-      "dashes": false,
       "datasource": {
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
-      "decimals": 0,
-      "editable": true,
-      "error": false,
-      "fill": 1,
-      "fillGradient": 0,
-      "grid": {},
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 4
+      },
+      "id": 18,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "node_time_seconds - node_boot_time_seconds",
+          "instant": false,
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Uptime Server",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 4,
+        "y": 4
+      },
+      "id": 20,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "(time() - process_start_time_seconds{job=\"prometheus\"})",
+          "instant": false,
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Uptime Prometheus",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 8,
+        "y": 4
+      },
+      "id": 19,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "time() - process_start_time_seconds{job=\"java\"}",
+          "instant": false,
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Uptime Java",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 12,
+        "y": 4
+      },
+      "id": 21,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "redis_uptime_in_seconds",
+          "instant": false,
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Uptime Redis",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 7,
+        "x": 17,
+        "y": 4
+      },
+      "id": 22,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "value"
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(redis_db_keys)",
+          "format": "time_series",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "Clients",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Clients Online",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 4,
         "w": 8,
         "x": 0,
-        "y": 4
+        "y": 8
       },
-      "hiddenSeries": false,
       "id": 9,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": false
-      },
-      "lines": false,
-      "linewidth": 2,
       "links": [],
-      "nullPointMode": "connected",
       "options": {
-        "alertThreshold": true
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
       },
-      "percentage": false,
       "pluginVersion": "10.0.1",
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
       "targets": [
         {
           "datasource": {
@@ -591,38 +918,9 @@
           "step": 2
         }
       ],
-      "thresholds": [],
-      "timeRegions": [],
       "title": "Running Containers",
-      "tooltip": {
-        "msResolution": true,
-        "shared": true,
-        "sort": 0,
-        "value_type": "cumulative"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": "",
-          "logBase": 1,
-          "min": 0,
-          "show": true
-        },
-        {
-          "format": "short",
-          "logBase": 1,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
+      "transparent": true,
+      "type": "stat"
     },
     {
       "datasource": {
@@ -653,7 +951,7 @@
         "h": 4,
         "w": 8,
         "x": 8,
-        "y": 4
+        "y": 8
       },
       "id": 17,
       "options": {
@@ -685,6 +983,7 @@
         }
       ],
       "title": "Alerts",
+      "transparent": true,
       "type": "stat"
     },
     {
@@ -719,12 +1018,12 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 4
+        "y": 8
       },
       "id": 16,
       "links": [],
       "options": {
-        "displayMode": "lcd",
+        "displayMode": "basic",
         "minVizHeight": 10,
         "minVizWidth": 0,
         "orientation": "horizontal",
@@ -758,6 +1057,7 @@
         }
       ],
       "title": "Container Disk usage",
+      "transparent": true,
       "type": "bargauge"
     },
     {
@@ -778,7 +1078,7 @@
         "h": 4,
         "w": 8,
         "x": 0,
-        "y": 8
+        "y": 12
       },
       "hiddenSeries": false,
       "id": 15,
@@ -872,6 +1172,7 @@
         "sort": 0,
         "value_type": "cumulative"
       },
+      "transparent": true,
       "type": "graph",
       "xaxis": {
         "mode": "time",
@@ -913,7 +1214,7 @@
         "h": 4,
         "w": 8,
         "x": 8,
-        "y": 8
+        "y": 12
       },
       "hiddenSeries": false,
       "id": 10,
@@ -971,6 +1272,7 @@
         "sort": 0,
         "value_type": "cumulative"
       },
+      "transparent": true,
       "type": "graph",
       "xaxis": {
         "mode": "time",
@@ -1013,7 +1315,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 12
+        "y": 16
       },
       "hiddenSeries": false,
       "id": 8,
@@ -1025,6 +1327,8 @@
         "min": true,
         "rightSide": true,
         "show": true,
+        "sort": "avg",
+        "sortDesc": true,
         "total": false,
         "values": true
       },
@@ -1069,6 +1373,7 @@
         "sort": 2,
         "value_type": "cumulative"
       },
+      "transparent": true,
       "type": "graph",
       "xaxis": {
         "mode": "time",
@@ -1111,7 +1416,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 19
+        "y": 23
       },
       "hiddenSeries": false,
       "id": 11,
@@ -1123,6 +1428,8 @@
         "min": true,
         "rightSide": true,
         "show": true,
+        "sort": "avg",
+        "sortDesc": true,
         "total": false,
         "values": true
       },
@@ -1165,6 +1472,7 @@
         "sort": 0,
         "value_type": "cumulative"
       },
+      "transparent": true,
       "type": "graph",
       "xaxis": {
         "mode": "time",
@@ -1207,7 +1515,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 26
+        "y": 30
       },
       "hiddenSeries": false,
       "id": 12,
@@ -1219,6 +1527,8 @@
         "min": true,
         "rightSide": true,
         "show": true,
+        "sort": "avg",
+        "sortDesc": true,
         "total": false,
         "values": true
       },
@@ -1261,6 +1571,7 @@
         "sort": 0,
         "value_type": "cumulative"
       },
+      "transparent": true,
       "type": "graph",
       "xaxis": {
         "mode": "time",
@@ -1303,7 +1614,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 33
+        "y": 37
       },
       "hiddenSeries": false,
       "id": 13,
@@ -1359,6 +1670,7 @@
         "sort": 2,
         "value_type": "cumulative"
       },
+      "transparent": true,
       "type": "graph",
       "xaxis": {
         "mode": "time",
@@ -1401,7 +1713,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 33
+        "y": 37
       },
       "hiddenSeries": false,
       "id": 14,
@@ -1457,6 +1769,7 @@
         "sort": 2,
         "value_type": "cumulative"
       },
+      "transparent": true,
       "type": "graph",
       "xaxis": {
         "mode": "time",
@@ -1522,6 +1835,6 @@
   "timezone": "browser",
   "title": "Docker Containers",
   "uid": "c9cb10a4-2bd5-4896-a665-cf8ad79b8bc6",
-  "version": 4,
+  "version": 6,
   "weekStart": ""
 }
