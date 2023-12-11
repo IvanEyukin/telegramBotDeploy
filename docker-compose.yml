@@ -3,6 +3,8 @@ version: "3.7"
 volumes:
     prometheus_data: {}
     grafana_data: {}
+    cadvisor_data: {}
+    node_exporter_data: {}
     sqlite: {}
 
 networks:
@@ -50,12 +52,7 @@ services:
       - cadvisor
     networks:
       - telegram-net
-    deploy:
-      placement:
-        constraints:
-          - node.role==manager
-      restart_policy:
-        condition: on-failure
+    restart: always
 
   node-exporter:
     container_name: node-exporter
@@ -63,7 +60,7 @@ services:
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
-      - /:/rootfs:ro
+      - node_exporter_data:/rootfs:ro
     command: 
       - '--path.procfs=/host/proc' 
       - '--path.sysfs=/host/sys'
@@ -73,10 +70,7 @@ services:
       - 8091:9100
     networks:
       - telegram-net
-    deploy:
-      mode: global
-      restart_policy:
-          condition: on-failure
+    restart: always
 
   redis-exporter:
     container_name: redis-exporter
@@ -86,7 +80,7 @@ services:
       - "6060:9121"
     networks:
       - telegram-net
-    restart: unless-stopped
+    restart: always
 
   alertmanager:
     container_name: alertmanager
@@ -94,24 +88,19 @@ services:
     ports:
       - 8092:9093
     volumes:
-      - "./alertmanager/:/etc/alertmanager/"
+      - ./alertmanager/:/etc/alertmanager/
     networks:
       - telegram-net
     command:
       - '--config.file=/etc/alertmanager/config.yml'
       - '--storage.path=/alertmanager'
-    deploy:
-      placement:
-        constraints:
-           - node.role==manager
-      restart_policy:
-        condition: on-failure    
+    restart: always
 
   cadvisor:
     container_name: cadvisor
     image: gcr.io/cadvisor/cadvisor
     volumes:
-      - /:/rootfs:ro
+      - cadvisor_data:/rootfs:ro
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
@@ -119,10 +108,7 @@ services:
       - 8093:8080
     networks:
       - telegram-net
-    deploy:
-      mode: global
-      restart_policy:
-          condition: on-failure
+    restart: always
 
   grafana:
     container_name: grafana
@@ -139,9 +125,4 @@ services:
     networks:
       - telegram-net
     user: "472"
-    deploy:
-      placement:
-        constraints:
-          - node.role==manager
-      restart_policy:
-        condition: on-failure
+    restart: always
